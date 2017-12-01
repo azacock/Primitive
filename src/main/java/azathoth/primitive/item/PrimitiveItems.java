@@ -8,7 +8,7 @@ public class PrimitiveItems {
 	public static Item frame;
 
 	public static void preInit() {
-		frame = new ItemFrame().setUnlocalizedName("frame");
-		GameRegistry.registerItem(frame, "frame").setCreativeTab(CreativeTabs.tabMisc);
+		frame = new ItemFrame().setUnlocalizedName("frame").setCreativeTab(CreativeTabs.tabMisc);
+		GameRegistry.registerItem(frame, "frame");
 	}
 }

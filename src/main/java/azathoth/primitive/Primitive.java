@@ -7,6 +7,7 @@ import azathoth.primitive.block.BlockEdgeFramedDaub;
 import azathoth.primitive.block.BlockFramedDaub;
 import azathoth.primitive.proxy.ClientProxy;
 import azathoth.primitive.proxy.CommonProxy;
+import azathoth.primitive.item.PrimitiveItems;
 import azathoth.primitive.tileentity.PrimitiveTileEntities;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -41,6 +42,7 @@ public class Primitive {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		PrimitiveTileEntities.preInit();
+		PrimitiveItems.preInit();
 		GameRegistry.registerBlock(wattle = new BlockWattle(), "wattle");
 		GameRegistry.registerBlock(thatch = new BlockThatch(), "thatch");
 		GameRegistry.registerBlock(daub = new BlockDaub().setBlockName("daub").setBlockTextureName(Primitive.MODID + ":daub"), "daub");

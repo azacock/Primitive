@@ -59,7 +59,7 @@ public class ItemFrame extends Item {
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitx, float hity, float hitz) {
 		if (world.getBlock(x, y, z) == Primitive.daub) {
 			world.setBlock(x, y, z, Primitive.daub_framed);
-		} else if (world.getblock(x, y, z) != Primitive.daub_framed) {
+		} else if (world.getBlock(x, y, z) != Primitive.daub_framed) {
 			return false;
 		}
 
