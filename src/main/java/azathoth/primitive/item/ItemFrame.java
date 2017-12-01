@@ -69,6 +69,7 @@ public class ItemFrame extends Item {
 
 		if (te != null && !te.hasFrame(side, frame)) {
 			te.updateFrames(side, frame);
+			// Minecraft.getMinecraft().renderGlobal.markBlockNeedsUpdate(x, y, z);
 			return true;
 		}
 
