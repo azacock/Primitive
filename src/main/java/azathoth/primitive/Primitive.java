@@ -33,7 +33,7 @@ public class Primitive {
 	public static Block wattle;
 	public static Block thatch;
 	public static Block daub;
-	public static Block daub_test;
+	public static Block daub_framed;
 
 	@SidedProxy(clientSide = "azathoth.primitive.proxy.ClientProxy", serverSide = "azathoth.primitive.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -44,7 +44,7 @@ public class Primitive {
 		GameRegistry.registerBlock(wattle = new BlockWattle(), "wattle");
 		GameRegistry.registerBlock(thatch = new BlockThatch(), "thatch");
 		GameRegistry.registerBlock(daub = new BlockDaub().setBlockName("daub").setBlockTextureName(Primitive.MODID + ":daub"), "daub");
-		GameRegistry.registerBlock(daub_test = new BlockFramedDaub().setBlockName("daub_test").setBlockTextureName(Primitive.MODID + ":daub"), "daub_test");
+		GameRegistry.registerBlock(daub_framed = new BlockFramedDaub().setBlockName("daub_test").setBlockTextureName(Primitive.MODID + ":daub"), "daub_test");
 		// GameRegistry.registerBlock(daub_vertical = new BlockFramedDaub().setBlockName("daub_vertical").setBlockTextureName(Primitive.MODID + ":daub_vertical"), "daub_vertical");
 		// GameRegistry.registerBlock(daub_horizontal = new BlockFramedDaub().setBlockName("daub_horizontal").setBlockTextureName(Primitive.MODID + ":daub_horizontal"), "daub_horizontal");
 		// GameRegistry.registerBlock(daub_cross = new BlockFramedDaub().setBlockName("daub_cross").setBlockTextureName(Primitive.MODID + ":daub_cross"), "daub_cross");

@@ -5,10 +5,10 @@ import net.minecraft.tileentity.TileEntity;
 public class FramedDaubTileEntity extends TileEntity {
 	protected short bottom = 0;
 	protected short top = 0;
-	protected short north = 8 | 256 | 2048;
-	protected short south = 2 | 4;
-	protected short west = 1 | 4;
-	protected short east = 2 | 8;
+	protected short north = 0;
+	protected short south = 0;
+	protected short west = 0;
+	protected short east = 0;
 
 	/*
 	 * 1 = vertical

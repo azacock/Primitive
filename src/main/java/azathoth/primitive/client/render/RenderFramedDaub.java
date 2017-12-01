@@ -1,5 +1,6 @@
 package azathoth.primitive.client.render;
 
+import azathoth.primitive.Primitive;
 import azathoth.primitive.tileentity.FramedDaubTileEntity;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
@@ -30,15 +31,12 @@ public final class RenderFramedDaub implements ISimpleBlockRenderingHandler {
 		float V;
 		double offset = 0.0001;
 
-		// tessellator.addTranslation(x, y, z);
-		tessellator.setColorOpaque_F(1f, 1f, 1f);
-		// tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
-		tessellator.setBrightness(255);
-
 		renderer.renderStandardBlockWithAmbientOcclusion(block, x, y, z, 1f, 1f, 1f);
 
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		tessellator.setColorOpaque_F(1f, 1f, 1f);
+		// int light = block.getMixedBrightnessForBlock(blockAccess, x, y, z);
+		tessellator.setBrightness(block.getMixedBrightnessForBlock(blockAccess, x, y, z));
+
 		for (int i = 1; i <= 12; i++) {
 			double ioffset = offset * i;
 			short frame = (short) (1 << (i - 1));
@@ -102,7 +100,6 @@ public final class RenderFramedDaub implements ISimpleBlockRenderingHandler {
 				tessellator.addVertexWithUV(x + 1f + ioffset, y, z + 1f, u, V);
 			}
 		}
-		GL11.glDisable(GL11.GL_BLEND);
 
 		return true;
 	}
