@@ -47,4 +47,19 @@ public class ItemMold extends Item {
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitx, float hity, float hitz) {
 		return false;
 	}
+
+	@Override
+	public boolean doesContainerItemLeaveCraftingGrid(ItemStack stack) {
+		return false;
+	}
+
+	@Override
+	public boolean hasContainerItem(ItemStack stack) {
+		return true;
+	}
+
+	@Override
+	public ItemStack getContainerItem(ItemStack stack) {
+		return stack.copy();
+	}
 }

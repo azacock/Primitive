@@ -1,8 +1,11 @@
 package azathoth.primitive.tileentity;
 
 import azathoth.primitive.Primitive;
+import azathoth.primitive.item.PrimitiveItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -10,7 +13,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class DryingBrickTileEntity extends TileEntity {
-	protected short tick_treshold = 100;
+	protected short tick_treshold = 60;
 	protected short ticks = 0;
 	protected byte[] bricks = new byte[6];
 	// for each brick, 0 represents no brick, 1 represents a dry brick, >1 represets wetness levels
@@ -53,6 +56,9 @@ public class DryingBrickTileEntity extends TileEntity {
 		}
 
 		this.ticks = 0;
+
+		if (this.worldObj.getBlockLightValue(this.xCoord, this.yCoord, this.zCoord) < 13 || !this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord, this.zCoord))
+			return;
 
 		for (int i = 0; i < 6; i++) {
 			if (this.bricks[i] > 1) {
@@ -103,5 +109,18 @@ public class DryingBrickTileEntity extends TileEntity {
 			this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, Blocks.air);
 
 		return r;
+	}
+
+	public void dropBricks() {
+		for (int i = 0; i < 6; i++) {
+			if (this.bricks[i] > 0) {
+				EntityItem e;
+				if (this.bricks[i] == 1)
+					e = new EntityItem(this.worldObj, this.xCoord, this.yCoord, this.zCoord, new ItemStack(PrimitiveItems.brick, 1, 1));
+				else
+					e = new EntityItem(this.worldObj, this.xCoord, this.yCoord, this.zCoord, new ItemStack(PrimitiveItems.brick, 1, 0));
+				this.worldObj.spawnEntityInWorld(e);
+			}
+		}
 	}
 }

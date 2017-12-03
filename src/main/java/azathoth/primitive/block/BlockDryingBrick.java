@@ -9,10 +9,12 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import java.util.Random;
 
 public class BlockDryingBrick extends BlockContainer {
 	protected IIcon icon;
@@ -67,5 +69,18 @@ public class BlockDryingBrick extends BlockContainer {
 		}
 
 		return false;
+	}
+
+	@Override
+	public Item getItemDropped(int meta, Random r, int fortune) {
+		return null;
+	}
+
+	@Override
+	public void breakBlock(World world, int x, int y, int z, Block b, int side) {
+		DryingBrickTileEntity te = (DryingBrickTileEntity) world.getTileEntity(x, y, z);
+		if (te != null)
+			te.dropBricks();
+		super.breakBlock(world, x, y, z, b, side);
 	}
 }

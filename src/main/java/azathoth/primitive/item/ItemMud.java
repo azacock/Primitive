@@ -52,7 +52,22 @@ public class ItemMud extends Item {
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitx, float hity, float hitz) {
 		int meta = stack.getItemDamage();
-		if (meta == 1 || meta == 3) {
+		if (meta == 2) {
+			if (side > 1 && world.getBlock(x, y, z) == Primitive.adobe) {
+				int b_meta = world.getBlockMetadata(x, y, z);
+				if (b_meta == 0 || b_meta == 2) {
+					world.setBlock(x, y, z, Primitive.adobe, 1, 3);
+					if (stack.stackSize == 1) {
+						player.inventory.decrStackSize(player.inventory.currentItem, 1);
+					} else {
+						ItemStack i = player.inventory.getStackInSlot(player.inventory.currentItem);
+						player.inventory.decrStackSize(player.inventory.currentItem, 1);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, i.copy());
+					}
+					return true;
+				}
+			}
+		} else if (meta == 1 || meta == 3) {
 			Block b = null;
 			switch (side) {
 				case 0:
@@ -82,7 +97,7 @@ public class ItemMud extends Item {
 			}
 		} else if (meta == 0 && world.getBlock(x, y, z) == Primitive.wattle) {
 			world.setBlock(x, y, z, Primitive.daub, 3, 3);
-			world.scheduleBlockUpdate(x, y, z, Primitive.daub, 20 * 5);
+			world.scheduleBlockUpdate(x, y, z, Primitive.daub, 20 * 60);
 			if (stack.stackSize == 1) {
 				player.inventory.decrStackSize(player.inventory.currentItem, 1);
 			} else {

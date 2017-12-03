@@ -17,7 +17,7 @@ public class BlockWattle extends BlockPane {
 	public BlockWattle() {
 		super(Primitive.MODID + ":wattle", Primitive.MODID + ":wattle_side", Material.plants, true);
 		this.setStepSound(soundTypeGrass);
-		this.setBlockName("Wattle");
+		this.setBlockName("wattle");
 		this.setBlockTextureName(Primitive.MODID + ":wattle");
 	}
 

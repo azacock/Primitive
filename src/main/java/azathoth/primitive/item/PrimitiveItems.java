@@ -20,10 +20,7 @@ public class PrimitiveItems {
 		brick = new ItemBrick().setUnlocalizedName("mud_brick");
 		GameRegistry.registerItem(brick, "mud_brick");
 		mold = new ItemMold().setUnlocalizedName("mold");
+		mold.setContainerItem(mold);
 		GameRegistry.registerItem(mold, "mold");
-	}
-
-	public static void init() {
-		GameRegistry.addRecipe(new ItemStack(PrimitiveItems.mold, 1, 0), new Object[] {"sss", "   ", "sss", 's', Items.stick});
 	}
 }

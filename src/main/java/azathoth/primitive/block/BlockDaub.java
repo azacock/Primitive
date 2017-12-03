@@ -40,6 +40,6 @@ public class BlockDaub extends Block {
 		int meta = world.getBlockMetadata(x, y, z) - 1;
 		world.setBlock(x, y, z, (Block) this, meta, 3);
 		if (meta > 0)
-			world.scheduleBlockUpdate(x, y, z, (Block) this, 20 * 5);
+			world.scheduleBlockUpdate(x, y, z, (Block) this, 20 * 60);
 	}
 }

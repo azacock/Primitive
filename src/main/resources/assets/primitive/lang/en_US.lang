@@ -1,0 +1,32 @@
+tile.wattle.name=Wattle
+tile.thatch.name=Thatch
+tile.thatch_stairs.name=Thatch Roofing
+tile.daub.name=Daub
+tile.daub_framed.name=Framed Daub
+tile.adobe_0.name=Adobe Bricks
+tile.adobe_1.name=Adobe
+tile.adobe_2.namePeruvian Adobe Bricks
+tile.drying_brick.name=Adobe Bricks
+
+item.frame_0.name=Vertical Frame
+item.frame_1.name=Horizontal Frame
+item.frame_2.name=Left Diagonal Frame
+item.frame_3.name=Right Diagonal Frame
+item.frame_4.name=Top Edge Frame
+item.frame_5.name=Bottom Edge Frame
+item.frame_6.name=Left Edge Frame
+item.frame_7.name=Right Edge Frame
+item.frame_8.name=Top Left Corner Frame
+item.frame_9.name=Top Right Corner Frame
+item.frame_10.name=Bottom Left Corner Frame
+item.frame_11.name=Bottom Right Corner Frame
+
+item.mud_ball_0.name=Wet Daub
+item.mud_ball_1.name=Daub
+item.mud_ball_2.name=Wet Adobe
+item.mud_ball_3.name=Adobe
+
+item.brick_0.name=Wet Adobe Brick
+item.brick_1.name=Adobe Brick
+
+item.mold_0.name=Brick Mold

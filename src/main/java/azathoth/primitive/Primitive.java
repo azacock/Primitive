@@ -54,7 +54,7 @@ public class Primitive {
 		GameRegistry.registerBlock(thatch = new BlockThatch(), "thatch");
 		GameRegistry.registerBlock(thatch_stairs = new BlockThatchStairs(), "thatch_stairs");
 		GameRegistry.registerBlock(daub = new BlockDaub().setBlockName("daub").setBlockTextureName(Primitive.MODID + ":daub"), "daub");
-		GameRegistry.registerBlock(daub_framed = new BlockFramedDaub().setBlockName("daub_test").setBlockTextureName(Primitive.MODID + ":daub"), "daub_test");
+		GameRegistry.registerBlock(daub_framed = new BlockFramedDaub().setBlockName("daub_framed").setBlockTextureName(Primitive.MODID + ":daub"), "daub_framed");
 		GameRegistry.registerBlock(adobe = new BlockAdobe().setBlockName("adobe").setBlockTextureName(Primitive.MODID + ":adobe"), ItemBlockAdobe.class, "adobe");
 		GameRegistry.registerBlock(drying_brick = new BlockDryingBrick().setBlockName("drying_brick").setBlockTextureName(Primitive.MODID + ":drying_brick"), "drying_brick");
 	}
@@ -62,8 +62,6 @@ public class Primitive {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.init();
-		PrimitiveItems.init();
-		GameRegistry.addRecipe(new ItemStack(Primitive.wattle, 4), new Object[] {"sgs", "sgs", "sgs", 's', Items.stick, 'g', new ItemStack(Blocks.tallgrass, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(Primitive.thatch, 2), new Object[] {"ggg", "ggg", "ggg", 'g', new ItemStack(Blocks.tallgrass, 1, 1)});
+		PrimitiveRecipes.init();
 	}
 }
