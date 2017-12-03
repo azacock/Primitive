@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockWattle extends BlockPane {
-	protected IIcon[] icons = new IIcon[3];
+	protected IIcon[] icons = new IIcon[6];
 
 	public BlockWattle() {
 		super(Primitive.MODID + ":wattle", Primitive.MODID + ":wattle_side", Material.plants, true);
@@ -31,6 +31,9 @@ public class BlockWattle extends BlockPane {
 		this.icons[1] = r.registerIcon(this.textureName);
 		this.icons[0] = r.registerIcon(this.textureName + "_top");
 		this.icons[2] = r.registerIcon(this.textureName + "_side");
+		this.icons[3] = r.registerIcon(this.textureName + "_1");
+		this.icons[4] = r.registerIcon(this.textureName + "_2");
+		this.icons[5] = r.registerIcon(this.textureName + "_3");
 	}
 
 	@Override
@@ -41,7 +44,16 @@ public class BlockWattle extends BlockPane {
 			case 0:
 				return this.icons[0];
 			default:
-				return this.icons[1];
+				switch (meta) {
+					case 1:
+						return this.icons[3];
+					case 2:
+						return this.icons[4];
+					case 3:
+						return this.icons[5];
+					default:
+						return this.icons[1];
+				}
 		}
 	}
 

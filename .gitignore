@@ -6,3 +6,6 @@ gradlew.bat
 build
 gradle
 libs
+.classpath
+.project
+.settings

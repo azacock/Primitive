@@ -61,11 +61,12 @@ repositories {
 //     }
 // }
 
-// jar {
-// 	manifest {
+jar {
+	manifest {
+		attributes 'FMLAT': 'primitive_at.cfg'
 //         attributes "FMLCorePlugin": "minefantasy.mf2.asm.MFLoadingPlugin", "FMLCorePluginContainsFMLMod": "true"
-//     }
-// }
+    }
+}
 
 // tasks.build.dependsOn('deobfJar')
 
@@ -87,4 +88,6 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }

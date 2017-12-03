@@ -222,7 +222,20 @@ public class RenderWattle implements ISimpleBlockRenderingHandler {
 		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
 
 		int meta = world.getBlockMetadata(x, y, z);
-		IIcon iconPane = block.getIcon(1, meta);
+		boolean top = y < 255 && world.getBlock(x, y + 1, z) == block;
+		boolean bottom = y > 1 && world.getBlock(x, y - 1, z) == block;
+		IIcon iconPane;
+
+		if (top && bottom) {
+			iconPane = block.getIcon(1, 3);
+		} else if (top) {
+			iconPane = block.getIcon(1, 1);
+		} else if (bottom) {
+			iconPane = block.getIcon(1, 2);
+		} else {
+			iconPane = block.getIcon(1, 0);
+		}
+
 		IIcon iconTop = block.getIcon(0, meta);
 		IIcon iconSide = block.getIcon(2, meta);
 		if (iconPane == null || iconTop == null || iconSide == null)

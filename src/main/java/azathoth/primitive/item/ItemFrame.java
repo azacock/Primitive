@@ -2,6 +2,7 @@ package azathoth.primitive.item;
 
 import azathoth.primitive.Primitive;
 import azathoth.primitive.tileentity.FramedDaubTileEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +58,7 @@ public class ItemFrame extends Item {
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitx, float hity, float hitz) {
-		if (world.getBlock(x, y, z) == Primitive.daub) {
+		if (world.getBlock(x, y, z) == Primitive.daub && world.getBlockMetadata(x, y, z) == 0) {
 			world.setBlock(x, y, z, Primitive.daub_framed);
 		} else if (world.getBlock(x, y, z) != Primitive.daub_framed) {
 			return false;
@@ -67,9 +68,9 @@ public class ItemFrame extends Item {
 
 		short frame = (short) (1 << stack.getItemDamage());
 
-		if (te != null && !te.hasFrame(side, frame)) {
-			te.updateFrames(side, frame);
-			// Minecraft.getMinecraft().renderGlobal.markBlockNeedsUpdate(x, y, z);
+		if (te != null && !te.hasFrame(side, frame) && te.updateFrames(side, frame)) {
+			if (world.isRemote)
+				Minecraft.getMinecraft().renderGlobal.markBlockForRenderUpdate(x, y, z);
 			return true;
 		}
 

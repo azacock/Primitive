@@ -79,7 +79,7 @@ public class BlockFramedDaub extends BlockContainer {
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+		return true;
 	}
 
 	@Override

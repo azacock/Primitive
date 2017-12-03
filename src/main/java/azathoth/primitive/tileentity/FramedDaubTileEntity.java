@@ -1,5 +1,10 @@
 package azathoth.primitive.tileentity;
 
+import azathoth.primitive.Primitive;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class FramedDaubTileEntity extends TileEntity {
@@ -25,48 +30,48 @@ public class FramedDaubTileEntity extends TileEntity {
 	 * 2048 = corner bottom right
 	 */
 
-	protected short normalizeFrame(int side, short frame) {
-		if (frame == 0)
-			return 0;
-
-		if (side == 3 || side == 5) {
-			switch (frame) {
-				case 4:
-					frame = 8;
-					break;
-				case 8:
-					frame = 4;
-					break;
-				case 64:
-					frame = 128;
-					break;
-				case 128:
-					frame = 64;
-					break;
-				case 256:
-					frame = 512;
-					break;
-				case 512:
-					frame = 256;
-					break;
-				case 1024:
-					frame = 2048;
-					break;
-				case 2048:
-					frame = 1204;
-					break;
-				default:
-			}
-		}
-
-		return frame;
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tag.setShort("bottom", this.bottom);
+		tag.setShort("top", this.top);
+		tag.setShort("north", this.north);
+		tag.setShort("south", this.south);
+		tag.setShort("west", this.west);
+		tag.setShort("east", this.east);
 	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.bottom = tag.getShort("bottom");
+		this.top = tag.getShort("top");
+		this.north = (short) tag.getShort("north");
+		this.south = tag.getShort("south");
+		this.west = tag.getShort("west");
+		this.east = tag.getShort("east");
+	}
+
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+		this.readFromNBT(packet.func_148857_g());
+	}
+
+	// @Override
+	// public void updateEntity() {
+		
+	// }
 
 	public boolean hasFrame(int side, short frame) {
 		if (frame == 0)
 			return true;
-
-		// frame = normalizeFrame(side, frame);
 
 		switch (side) {
 			case 1:
@@ -84,8 +89,44 @@ public class FramedDaubTileEntity extends TileEntity {
 		}
 	}
 
-	public void updateFrames(int side, short frame) {
-		// frame = normalizeFrame(side, frame);
+	public boolean updateFrames(int side, short frame) {
+		short remove;
+		switch (frame) {
+			case 4:
+				this.removeFrame(side, (short) (256 | 2048));
+				break;
+			case 8:
+				this.removeFrame(side, (short) (512 | 1024));
+				break;
+			case 16:
+				this.removeFrame(side, (short) (256 | 512));
+				break;
+			case 32:
+				this.removeFrame(side, (short) (1024 | 2048));
+				break;
+			case 64:
+				this.removeFrame(side, (short) (256 | 1024));
+				break;
+			case 128:
+				this.removeFrame(side, (short) (512 | 2048));
+				break;
+			case 256:
+				if (this.hasFrame(side, (short) (4 | 16 | 64)))
+					return false;
+				break;
+			case 512:
+				if (this.hasFrame(side, (short) (8 | 16 | 128)))
+					return false;
+				break;
+			case 1024:
+				if (this.hasFrame(side, (short) (8 | 32 | 64)))
+					return false;
+				break;
+			case 2048:
+				if (this.hasFrame(side, (short) (4 | 32 | 128)))
+					return false;
+				break;
+		}
 
 		switch (side) {
 			case 1:
@@ -106,11 +147,12 @@ public class FramedDaubTileEntity extends TileEntity {
 			default:
 				this.bottom |= frame;
 		}
+
+		this.markDirty();
+		return true;
 	}
 
 	public void removeFrame(int side, short frame) {
-		// frame = normalizeFrame(side, frame);
-
 		switch (side) {
 			case 1:
 				this.top &= ~frame;
@@ -130,6 +172,7 @@ public class FramedDaubTileEntity extends TileEntity {
 			default:
 				this.bottom &= ~frame;
 		}
+		this.markDirty();
 	}
 
 	public void removeFrames(int side) {
@@ -152,6 +195,7 @@ public class FramedDaubTileEntity extends TileEntity {
 			default:
 				this.bottom = 0;
 		}
+		this.markDirty();
 	}
 	
 	public void removeAllFrames() {
@@ -161,5 +205,7 @@ public class FramedDaubTileEntity extends TileEntity {
 		this.south = 0;
 		this.west = 0;
 		this.east = 0;
+		this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, Primitive.daub);
+		this.markDirty();
 	}
 }
