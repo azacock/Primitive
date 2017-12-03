@@ -13,7 +13,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class DryingBrickTileEntity extends TileEntity {
-	protected short tick_treshold = 60;
+	protected short tick_treshold = 20 * 60;
 	protected short ticks = 0;
 	protected byte[] bricks = new byte[6];
 	// for each brick, 0 represents no brick, 1 represents a dry brick, >1 represets wetness levels
