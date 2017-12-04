@@ -43,7 +43,8 @@ public final class RenderFramedDaub implements ISimpleBlockRenderingHandler {
 		}
 
 		for (int i = 1; i <= 12; i++) {
-			double ioffset = offset * i;
+			// double ioffset = offset * i;
+			double ioffset = offset;
 			short frame = (short) (1 << (i - 1));
 			iicon = block.getIcon(0, i);
 			u = iicon.getMinU();
