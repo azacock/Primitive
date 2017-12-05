@@ -31,5 +31,9 @@ public final class PrimitiveRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(PrimitiveItems.brick, 1, 0), new Object[] {new ItemStack(PrimitiveItems.daub, 1, 2), new ItemStack(PrimitiveItems.mold, 1)});
 		GameRegistry.addRecipe(new ItemStack(Primitive.adobe, 3, 0), new Object[] {"bmb", "mbm", "bmb", 'b', new ItemStack(PrimitiveItems.brick, 1, 1), 'm', new ItemStack(PrimitiveItems.daub, 1, 2)});
 		GameRegistry.addRecipe(new ItemStack(Primitive.adobe, 3, 2), new Object[] {"mmm", "bbb", "bbb", 'b', new ItemStack(PrimitiveItems.brick, 1, 1), 'm', new ItemStack(PrimitiveItems.daub, 1, 2)});
+
+		// log pile
+		GameRegistry.addRecipe(new ItemStack(Primitive.log_pile, 1), new Object[] {"###", "###", "###", '#', new ItemStack(Blocks.log, 1, 0)});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.log, 9), new Object[] {new ItemStack(Primitive.log_pile, 1)});
 	}
 }
