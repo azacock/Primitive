@@ -20,6 +20,7 @@ public class BlockLattice extends BlockPane {
 		this.setStepSound(soundTypeWood);
 		this.setBlockName("lattice");
 		this.setBlockTextureName(Primitive.MODID + ":lattice");
+		this.setHardness(0.3f);
 	}
 
 	@Override
