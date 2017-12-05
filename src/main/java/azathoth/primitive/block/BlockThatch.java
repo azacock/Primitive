@@ -10,5 +10,6 @@ public class BlockThatch extends Block {
 		this.setStepSound(soundTypeGrass);
 		this.setBlockName("thatch");
 		this.setBlockTextureName(Primitive.MODID + ":thatch");
+		this.setHardness(0.2f);
 	}
 }

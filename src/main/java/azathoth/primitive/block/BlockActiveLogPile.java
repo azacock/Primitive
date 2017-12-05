@@ -93,7 +93,7 @@ public class BlockActiveLogPile extends BlockLog {
 	public void updateTick(World world, int x, int y, int z, Random r) {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta == 0 || meta == 4 || meta == 8) {
-			world.setBlock(x, y, z, Primitive.adobe, 0, 3);
+			world.setBlock(x, y, z, Primitive.ash, 0, 3);
 		}
 	}
 }

@@ -13,6 +13,7 @@ public class BlockDaub extends Block {
 	public BlockDaub() {
 		super(Material.rock);
 		this.setStepSound(soundTypeStone);
+		this.setHardness(1.2f);
 	}
 
 	@Override

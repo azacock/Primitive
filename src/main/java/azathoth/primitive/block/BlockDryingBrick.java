@@ -23,6 +23,7 @@ public class BlockDryingBrick extends BlockContainer {
 		super(Material.clay);
 		this.setBlockBounds(0, 0, 0, 1f, 2f / 16f, 1f);
 		this.setBlockTextureName(Primitive.MODID + ":adobe_smooth");
+		this.setHardness(0.3f);
 	}
 
 	@Override

@@ -19,6 +19,7 @@ public class BlockFramedDaub extends BlockContainer {
 
 	public BlockFramedDaub() {
 		super(Material.rock);
+		this.setHardness(1.3f);
 	}
 
 	@Override

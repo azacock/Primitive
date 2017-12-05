@@ -14,6 +14,7 @@ public class BlockAdobe extends Block {
 	public IIcon[] icons = new IIcon[3];
 	public BlockAdobe () {
 		super(Material.rock);
+		this.setHardness(1.2f);
 	}
 
 	@Override
