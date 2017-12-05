@@ -8,6 +8,11 @@ import azathoth.primitive.block.BlockEdgeFramedDaub;
 import azathoth.primitive.block.BlockFramedDaub;
 import azathoth.primitive.block.BlockAdobe;
 import azathoth.primitive.block.BlockDryingBrick;
+import azathoth.primitive.block.BlockLattice;
+import azathoth.primitive.block.BlockLogPile;
+import azathoth.primitive.block.BlockActiveLogPile;
+import azathoth.primitive.block.BlockExposedActiveLogPile;
+import azathoth.primitive.block.ItemBlockLattice;
 import azathoth.primitive.block.ItemBlockAdobe;
 import azathoth.primitive.proxy.ClientProxy;
 import azathoth.primitive.proxy.CommonProxy;
@@ -42,6 +47,10 @@ public class Primitive {
 	public static Block daub_framed;
 	public static Block adobe;
 	public static Block drying_brick;
+	public static Block lattice;
+	public static Block log_pile;
+	public static Block active_log_pile;
+	public static Block exposed_active_log_pile;
 
 	@SidedProxy(clientSide = "azathoth.primitive.proxy.ClientProxy", serverSide = "azathoth.primitive.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -51,12 +60,16 @@ public class Primitive {
 		PrimitiveTileEntities.preInit();
 		PrimitiveItems.preInit();
 		GameRegistry.registerBlock(wattle = new BlockWattle(), "wattle");
+		GameRegistry.registerBlock(lattice = new BlockLattice(), ItemBlockLattice.class, "lattice");
 		GameRegistry.registerBlock(thatch = new BlockThatch(), "thatch");
 		GameRegistry.registerBlock(thatch_stairs = new BlockThatchStairs(), "thatch_stairs");
 		GameRegistry.registerBlock(daub = new BlockDaub().setBlockName("daub").setBlockTextureName(Primitive.MODID + ":daub"), "daub");
-		GameRegistry.registerBlock(daub_framed = new BlockFramedDaub().setBlockName("daub_framed").setBlockTextureName(Primitive.MODID + ":daub"), "daub_framed");
 		GameRegistry.registerBlock(adobe = new BlockAdobe().setBlockName("adobe").setBlockTextureName(Primitive.MODID + ":adobe"), ItemBlockAdobe.class, "adobe");
+		GameRegistry.registerBlock(daub_framed = new BlockFramedDaub().setBlockName("daub_framed").setBlockTextureName(Primitive.MODID + ":daub"), "daub_framed");
 		GameRegistry.registerBlock(drying_brick = new BlockDryingBrick().setBlockName("drying_brick").setBlockTextureName(Primitive.MODID + ":drying_brick"), "drying_brick");
+		GameRegistry.registerBlock(log_pile = new BlockLogPile().setBlockName("log_pile"), "log_pile");
+		GameRegistry.registerBlock(active_log_pile = new BlockActiveLogPile().setBlockName("active_log_pile"), "active_log_pile");
+		GameRegistry.registerBlock(exposed_active_log_pile = new BlockExposedActiveLogPile().setBlockName("exposed_active_log_pile"), "exposed_active_log_pile");
 	}
 
 	@EventHandler

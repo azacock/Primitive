@@ -1,5 +1,6 @@
 package azathoth.primitive.client.render;
 
+import azathoth.primitive.Primitive;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -222,18 +223,22 @@ public class RenderWattle implements ISimpleBlockRenderingHandler {
 		tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
 
 		int meta = world.getBlockMetadata(x, y, z);
-		boolean top = y < 255 && world.getBlock(x, y + 1, z) == block;
-		boolean bottom = y > 1 && world.getBlock(x, y - 1, z) == block;
 		IIcon iconPane;
 
-		if (top && bottom) {
-			iconPane = block.getIcon(1, 3);
-		} else if (top) {
-			iconPane = block.getIcon(1, 1);
-		} else if (bottom) {
-			iconPane = block.getIcon(1, 2);
+		if (block == Primitive.wattle) {
+			boolean top = y < 255 && world.getBlock(x, y + 1, z) == block;
+			boolean bottom = y > 1 && world.getBlock(x, y - 1, z) == block;
+			if (top && bottom) {
+				iconPane = block.getIcon(1, 3);
+			} else if (top) {
+				iconPane = block.getIcon(1, 1);
+			} else if (bottom) {
+				iconPane = block.getIcon(1, 2);
+			} else {
+				iconPane = block.getIcon(1, 0);
+			}
 		} else {
-			iconPane = block.getIcon(1, 0);
+			iconPane = block.getIcon(1, meta);
 		}
 
 		IIcon iconTop = block.getIcon(0, meta);
