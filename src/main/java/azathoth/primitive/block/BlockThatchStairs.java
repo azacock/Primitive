@@ -1,7 +1,7 @@
 package azathoth.primitive.block;
 
 import azathoth.primitive.Primitive;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.BlockStairs;
 
 public class BlockThatchStairs extends BlockStairs {

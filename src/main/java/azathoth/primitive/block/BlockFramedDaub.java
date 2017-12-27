@@ -1,17 +1,14 @@
 package azathoth.primitive.block;
 
 import azathoth.primitive.Primitive;
-import azathoth.primitive.tileentity.FramedDaubTileEntity;
 import azathoth.primitive.client.render.PrimitiveRenderers;
-import net.minecraft.block.Block;
+import azathoth.primitive.tileentity.FramedDaubTileEntity;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockFramedDaub extends BlockContainer {

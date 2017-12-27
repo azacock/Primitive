@@ -14,7 +14,7 @@ public class ItemBlockLattice extends ItemBlockWithMetadata {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return this.getUnlocalizedName() + " _ " + stack.getItemDamage();
+		return this.getUnlocalizedName() + "_" + stack.getItemDamage();
 	}
 
 	@Override

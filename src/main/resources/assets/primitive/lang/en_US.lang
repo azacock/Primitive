@@ -7,6 +7,20 @@ tile.adobe_0.name=Adobe Bricks
 tile.adobe_1.name=Adobe
 tile.adobe_2.namePeruvian Adobe Bricks
 tile.drying_brick.name=Adobe Bricks
+tile.ash_pile.name=Ash
+tile.log_pile.name=Log Pile
+tile.active_log_pile.name=Burning Log Pile
+tile.exposed_active_log_pile.name=Burning Log Pile
+tile.stick_ash_pile.name=Ash
+tile.stick_pile.name=Stick Pile
+tile.active_stick_pile.name=Burning Stick Pile
+tile.exposed_active_stick_pile.name=Burning Stick Pile
+tile.wattle_door.name=Wattle Door
+tile.rock.name=Rock
+tile.lattice_0.name=Wooden Lattice
+tile.lattice_1.name=Wooden Lattice
+tile.lattice_2.name=Wooden Lattice
+tile.lattice_3.name=Wooden Lattice
 
 item.frame_0.name=Vertical Frame
 item.frame_1.name=Horizontal Frame
@@ -26,7 +40,13 @@ item.mud_ball_1.name=Daub
 item.mud_ball_2.name=Wet Adobe
 item.mud_ball_3.name=Adobe
 
-item.brick_0.name=Wet Adobe Brick
-item.brick_1.name=Adobe Brick
+item.mud_brick_0.name=Wet Adobe Brick
+item.mud_brick_1.name=Adobe Brick
+item.mud_brick_2.name=Rock
 
 item.mold_0.name=Brick Mold
+
+item.knife.name=Flint Knife
+item.handaxe.name=Handaxe
+
+item.wattle_door.name=Wattle Door

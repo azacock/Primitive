@@ -1,18 +1,13 @@
 package azathoth.primitive.block;
 
-import azathoth.primitive.Primitive;
-import java.util.List;
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /* meta states:
  * 0, 4, 8: log pile
@@ -22,17 +17,22 @@ import net.minecraft.world.World;
  * 12: ash pile
  */
 
-public class BlockLogPile extends BlockLog {
+public class BlockMoundPile extends BlockLog {
 	public IIcon[] icons = new IIcon[2];
+	protected BlockMoundPileActive next;
 
-	public BlockLogPile() {
+	public BlockMoundPile() {
 		super();
+	}
+
+	public void setNext(BlockMoundPileActive _next) {
+		this.next = _next;
 	}
 
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		this.icons[0] = r.registerIcon(Primitive.MODID + ":log_pile");
-		this.icons[1] = r.registerIcon(Primitive.MODID + ":log_pile_side");
+		this.icons[0] = r.registerIcon(this.textureName);
+		this.icons[1] = r.registerIcon(this.textureName + "_side");
 	}
 	
 	@Override
@@ -57,6 +57,10 @@ public class BlockLogPile extends BlockLog {
 		return this.icons[0];
 	}
 
+	public Block getNext() {
+		return this.next;
+	}
+
 	@Override
 	public int damageDropped(int meta) {
 		return 0;
@@ -69,27 +73,27 @@ public class BlockLogPile extends BlockLog {
 	public boolean nearActivePile(World world, int x, int y, int z) {
 		int meta;
 
-		if (world.getBlock(x - 1, y, z) == Primitive.active_log_pile || world.getBlock(x - 1, y, z) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x - 1, y, z) == this.next || world.getBlock(x - 1, y, z) == this.next.getNext()) {
 			return true;
 		}
 
-		if (world.getBlock(x + 1, y, z) == Primitive.active_log_pile || world.getBlock(x + 1, y, z) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x + 1, y, z) == this.next || world.getBlock(x + 1, y, z) == this.next.getNext()) {
 			return true;
 		}
 
-		if (world.getBlock(x, y - 1, z) == Primitive.active_log_pile || world.getBlock(x, y - 1, z) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x, y - 1, z) == this.next || world.getBlock(x, y - 1, z) == this.next.getNext()) {
 			return true;
 		}
 
-		if (world.getBlock(x, y + 1, z) == Primitive.active_log_pile || world.getBlock(x, y + 1, z) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x, y + 1, z) == this.next || world.getBlock(x, y + 1, z) == this.next.getNext()) {
 			return true;
 		}
 
-		if (world.getBlock(x, y, z - 1) == Primitive.active_log_pile || world.getBlock(x, y, z - 1) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x, y, z - 1) == this.next || world.getBlock(x, y, z - 1) == this.next.getNext()) {
 			return true;
 		}
 
-		if (world.getBlock(x, y, z + 1) == Primitive.active_log_pile || world.getBlock(x, y, z + 1) == Primitive.exposed_active_log_pile) {
+		if (world.getBlock(x, y, z + 1) == this.next || world.getBlock(x, y, z + 1) == this.next.getNext()) {
 			return true;
 		}
 
@@ -117,15 +121,15 @@ public class BlockLogPile extends BlockLog {
 				world.setBlock(x, y, z, Blocks.fire);
 			} else if (this.nearActivePile(world, x, y, z)) {
 				if (this.isCovered(world, x, y, z)) {
-					world.setBlock(x, y, z, Primitive.active_log_pile, meta - 1, 3);
-					world.scheduleBlockUpdate(x, y, z, Primitive.active_log_pile, 20 * 30);
+					world.setBlock(x, y, z, this.next, meta - 1, 3);
+					world.scheduleBlockUpdate(x, y, z, this.next, 20 * 30);
 				} else {
-					world.setBlock(x, y, z, Primitive.exposed_active_log_pile, meta - 1, 3);
-					world.scheduleBlockUpdate(x, y, z, Primitive.exposed_active_log_pile, 20 * 3);
+					world.setBlock(x, y, z, this.next.getNext(), meta - 1, 3);
+					world.scheduleBlockUpdate(x, y, z, this.next.getNext(), 20 * 3);
 				}
 			} else if (this.isCovered(world, x, y, z)) {
-				world.setBlock(x, y, z, Primitive.active_log_pile, meta - 1, 3);
-				world.scheduleBlockUpdate(x, y, z, Primitive.active_log_pile, 20 * 30);
+				world.setBlock(x, y, z, this.next, meta - 1, 3);
+				world.scheduleBlockUpdate(x, y, z, this.next, 20 * 30);
 			} else {
 				world.setBlock(x, y, z, this, meta - 1, 3);
 			}

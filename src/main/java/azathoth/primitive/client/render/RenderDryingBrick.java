@@ -2,14 +2,14 @@ package azathoth.primitive.client.render;
 
 import azathoth.primitive.Primitive;
 import azathoth.primitive.tileentity.DryingBrickTileEntity;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
 
 public final class RenderDryingBrick implements ISimpleBlockRenderingHandler {
 	protected float dx = 6.5f * (1f / 16f);

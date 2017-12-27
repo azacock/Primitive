@@ -1,15 +1,14 @@
 package azathoth.primitive.client.render;
 
-import azathoth.primitive.Primitive;
 import azathoth.primitive.tileentity.FramedDaubTileEntity;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
 
 public final class RenderFramedDaub implements ISimpleBlockRenderingHandler {
 	@Override
@@ -29,7 +28,7 @@ public final class RenderFramedDaub implements ISimpleBlockRenderingHandler {
 		float v;
 		float U;
 		float V;
-		double offset = 0.0005;
+		double offset = 0.001;
 
 		renderer.renderStandardBlockWithAmbientOcclusion(block, x, y, z, 1f, 1f, 1f);
 

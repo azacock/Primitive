@@ -1,18 +1,10 @@
 package azathoth.primitive.block;
 
-import azathoth.primitive.Primitive;
-import java.util.List;
-import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /* meta states:
  * 0, 4, 8: log pile
@@ -22,9 +14,15 @@ import net.minecraft.world.World;
  * 12: ash pile
  */
 
-public class BlockExposedActiveLogPile extends BlockActiveLogPile {
-	public BlockExposedActiveLogPile() {
+public class BlockMoundPileExposed extends BlockMoundPileActive {
+	protected BlockMoundPileActive prev;
+
+	public BlockMoundPileExposed() {
 		super();
+	}
+
+	public void setPrevious(BlockMoundPileActive _prev) {
+		this.prev = _prev;
 	}
 
 	public boolean isCovered(World world, int x, int y, int z) {
@@ -41,8 +39,8 @@ public class BlockExposedActiveLogPile extends BlockActiveLogPile {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta == 0 || meta == 4 || meta == 8) {
 			if (this.isCovered(world, x, y, z)) {
-				world.setBlock(x, y, z, Primitive.active_log_pile, meta, 3);
-				world.scheduleBlockUpdate(x, y, z, Primitive.active_log_pile, 20 * 30);
+				world.setBlock(x, y, z, this.prev, meta, 3);
+				world.scheduleBlockUpdate(x, y, z, this.prev, 20 * 30);
 			} else {
 				world.setBlock(x, y, z, Blocks.fire);
 			}

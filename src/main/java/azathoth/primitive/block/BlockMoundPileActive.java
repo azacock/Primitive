@@ -1,18 +1,12 @@
 package azathoth.primitive.block;
 
-import azathoth.primitive.Primitive;
-import java.util.List;
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /* meta states:
  * 0, 4, 8: log pile
@@ -22,12 +16,26 @@ import net.minecraft.world.World;
  * 12: ash pile
  */
 
-public class BlockActiveLogPile extends BlockLog {
+public class BlockMoundPileActive extends BlockLog {
 	public IIcon[] icons = new IIcon[2];
+	protected BlockMoundPileExposed next;
+	protected Block result;
 
-	public BlockActiveLogPile() {
+	public BlockMoundPileActive() {
 		super();
 		this.setLightLevel(9);
+	}
+
+	public Block getNext() {
+		return this.next;
+	}
+
+	public void setNext(BlockMoundPileExposed _next) {
+		this.next = _next;
+	}
+
+	public void setResult(Block _result) {
+		this.result = _result;
 	}
 
 	@Override
@@ -43,8 +51,8 @@ public class BlockActiveLogPile extends BlockLog {
 
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		this.icons[0] = r.registerIcon(Primitive.MODID + ":active_pile");
-		this.icons[1] = r.registerIcon(Primitive.MODID + ":active_pile_side");
+		this.icons[0] = r.registerIcon(this.textureName);
+		this.icons[1] = r.registerIcon(this.textureName + "_side");
 	}
 	
 	@Override
@@ -83,8 +91,8 @@ public class BlockActiveLogPile extends BlockLog {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta == 0 || meta == 4 || meta == 8) {
 			if (!this.isCovered(world, x, y, z)) {
-				world.setBlock(x, y, z, Primitive.exposed_active_log_pile, meta, 3);
-				world.scheduleBlockUpdate(x, y, z, Primitive.exposed_active_log_pile, 20 * 3);
+				world.setBlock(x, y, z, this.next, meta, 3);
+				world.scheduleBlockUpdate(x, y, z, this.next, 20 * 3);
 			}
 		}
 	}
@@ -93,7 +101,7 @@ public class BlockActiveLogPile extends BlockLog {
 	public void updateTick(World world, int x, int y, int z, Random r) {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta == 0 || meta == 4 || meta == 8) {
-			world.setBlock(x, y, z, Primitive.ash, 0, 3);
+			world.setBlock(x, y, z, this.result, meta, 3);
 		}
 	}
 }

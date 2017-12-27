@@ -1,8 +1,11 @@
 package azathoth.primitive.client.render;
 
 import azathoth.primitive.Primitive;
+import azathoth.primitive.block.BlockPrimitivePane;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPane;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,10 +13,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
-
 import team.chisel.ctmlib.Drawing;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class RenderWattle implements ISimpleBlockRenderingHandler {
 
@@ -201,7 +201,7 @@ public class RenderWattle implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId, RenderBlocks renderer) {
-		BlockPane block = (BlockPane) b;
+		BlockPrimitivePane block = (BlockPrimitivePane) b;
 		Tessellator tessellator = Tessellator.instance;
 
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
@@ -252,22 +252,22 @@ public class RenderWattle implements ISimpleBlockRenderingHandler {
 			paneRenderer.set(x, y, z, iconPane, iconTop, iconSide);
 		}
 
-		boolean connectsNorth = block.canPaneConnectToBlock(world.getBlock(x, y, z - 1));
-		boolean connectsSouth = block.canPaneConnectToBlock(world.getBlock(x, y, z + 1));
-		boolean connectsWest = block.canPaneConnectToBlock(world.getBlock(x - 1, y, z));
-		boolean connectsEast = block.canPaneConnectToBlock(world.getBlock(x + 1, y, z));
-		boolean connectsTop = block.canPaneConnectToBlock(world.getBlock(x, y + 1, z));
-		boolean connectsBottom = block.canPaneConnectToBlock(world.getBlock(x, y - 1, z));
+		boolean connectsNorth = block.canConnectToBlock(world.getBlock(x, y, z - 1));
+		boolean connectsSouth = block.canConnectToBlock(world.getBlock(x, y, z + 1));
+		boolean connectsWest = block.canConnectToBlock(world.getBlock(x - 1, y, z));
+		boolean connectsEast = block.canConnectToBlock(world.getBlock(x + 1, y, z));
+		boolean connectsTop = block.canConnectToBlock(world.getBlock(x, y + 1, z));
+		boolean connectsBottom = block.canConnectToBlock(world.getBlock(x, y - 1, z));
 
-		boolean connectsTopNorth = block.canPaneConnectToBlock(world.getBlock(x, y + 1, z - 1));
-		boolean connectsTopSouth = block.canPaneConnectToBlock(world.getBlock(x, y + 1, z + 1));
-		boolean connectsTopWest = block.canPaneConnectToBlock(world.getBlock(x - 1, y + 1, z));
-		boolean connectsTopEast = block.canPaneConnectToBlock(world.getBlock(x + 1, y + 1, z));
+		boolean connectsTopNorth = block.canConnectToBlock(world.getBlock(x, y + 1, z - 1));
+		boolean connectsTopSouth = block.canConnectToBlock(world.getBlock(x, y + 1, z + 1));
+		boolean connectsTopWest = block.canConnectToBlock(world.getBlock(x - 1, y + 1, z));
+		boolean connectsTopEast = block.canConnectToBlock(world.getBlock(x + 1, y + 1, z));
 
-		boolean connectsBottomNorth = block.canPaneConnectToBlock(world.getBlock(x, y - 1, z - 1));
-		boolean connectsBottomSouth = block.canPaneConnectToBlock(world.getBlock(x, y - 1, z + 1));
-		boolean connectsBottomWest = block.canPaneConnectToBlock(world.getBlock(x - 1, y - 1, z));
-		boolean connectsBottomEast = block.canPaneConnectToBlock(world.getBlock(x + 1, y - 1, z));
+		boolean connectsBottomNorth = block.canConnectToBlock(world.getBlock(x, y - 1, z - 1));
+		boolean connectsBottomSouth = block.canConnectToBlock(world.getBlock(x, y - 1, z + 1));
+		boolean connectsBottomWest = block.canConnectToBlock(world.getBlock(x - 1, y - 1, z));
+		boolean connectsBottomEast = block.canConnectToBlock(world.getBlock(x + 1, y - 1, z));
 
 		boolean isolatedTop = !connectsTopNorth && !connectsTopSouth && !connectsTopWest && !connectsTopEast;
 		boolean isolatedBottom = !connectsBottomNorth && !connectsBottomSouth && !connectsBottomWest && !connectsBottomEast;

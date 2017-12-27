@@ -2,21 +2,20 @@ package azathoth.primitive.item;
 
 import azathoth.primitive.Primitive;
 import azathoth.primitive.tileentity.DryingBrickTileEntity;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import java.util.List;
 
 public class ItemBrick extends Item {
-	IIcon[] icons = new IIcon[2];
+	IIcon[] icons = new IIcon[3];
 
 	public ItemBrick() {
 		super();
@@ -27,11 +26,12 @@ public class ItemBrick extends Item {
 	public void registerIcons(IIconRegister r) {
 		this.icons[0] = r.registerIcon(Primitive.MODID + ":adobe_brick");
 		this.icons[1] = r.registerIcon(Primitive.MODID + ":adobe_brick_dry");
+		this.icons[2] = r.registerIcon(Primitive.MODID + ":rock");
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int meta) {
-		if (meta > 1)
+		if (meta > 2)
 			meta = 0;
 		return this.icons[meta];
 
@@ -41,6 +41,7 @@ public class ItemBrick extends Item {
 	public void getSubItems(Item item, CreativeTabs tav, List list) {
 		list.add(new ItemStack(item, 1, 0));
 		list.add(new ItemStack(item, 1, 1));
+		list.add(new ItemStack(item, 1, 2));
 	}
 
 	@Override

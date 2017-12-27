@@ -6,5 +6,7 @@ public class PrimitiveTileEntities {
 	public static void preInit() {
 		GameRegistry.registerTileEntity(FramedDaubTileEntity.class, "framed_daub_tile_entity");
 		GameRegistry.registerTileEntity(DryingBrickTileEntity.class, "drying_brick_tile_entity");
+		GameRegistry.registerTileEntity(FirepitTileEntity.class, "firepit_tile_entity");
+		GameRegistry.registerTileEntity(BasketTileEntity.class, "basket_tile_entity");
 	}
 }

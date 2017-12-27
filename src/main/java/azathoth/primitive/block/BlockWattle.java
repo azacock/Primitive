@@ -1,17 +1,14 @@
 package azathoth.primitive.block;
 
 import azathoth.primitive.Primitive;
-import azathoth.primitive.client.render.PrimitiveRenderers;
-import java.util.List;
-import net.minecraft.block.BlockPane;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockWattle extends BlockPane {
+public class BlockWattle extends BlockPrimitivePane {
 	protected IIcon[] icons = new IIcon[6];
 
 	public BlockWattle() {
@@ -20,11 +17,6 @@ public class BlockWattle extends BlockPane {
 		this.setBlockName("wattle");
 		this.setBlockTextureName(Primitive.MODID + ":wattle");
 		this.setHardness(0.2f);
-	}
-
-	@Override
-	public int getRenderType() {
-		return PrimitiveRenderers.rendererWattle;
 	}
 
 	@Override

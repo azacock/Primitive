@@ -2,7 +2,7 @@ package azathoth.primitive.block;
 
 import azathoth.primitive.Primitive;
 import azathoth.primitive.client.render.PrimitiveRenderers;
-import net.minecraft.block.BlockPane;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class BlockLattice extends BlockPane {
+public class BlockLattice extends BlockPrimitivePane {
 	protected IIcon[] icons = new IIcon[7];
 
 	public BlockLattice() {
